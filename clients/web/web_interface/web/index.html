@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Kali Dashboard</title>
+</head>
+<body>
+  <canvas id="ghost-canvas"></canvas>
+  <main>
+    <section id="dashboard">
+      <p id="Time">Time: Lädt...</p>
+        <section id="system-info">
+          <p id="cpu_temp">CPU Temp: Lädt...</p>
+          <p id="cpu_load">CPU Load: Lädt...</p>
+          <p id="disk_free">Disk Free: Lädt...</p>
+          <p id="ram_free">RAM Info: Lädt...</p>
+        </section>
+    </section>
+    <section id="button-container">
+      <div class="button-group">
+        <button id="src" onclick="show_section('src')">src</button>
+        <p>src</p>
+      </div>
+    </section>
+
+     <section id="folder" style="display: none;">
+        <a><h2>-empty-</h2></a>
+        <h3>preview(-latest-):</h3>
+        <ul id="file-list"></ul>
+     </section>
+
+  </main>
+  <script src="/static/disign.js"></script>
+  <script src="/static/main.js"></script>
+</body>
+</html>
