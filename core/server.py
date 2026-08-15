@@ -11,11 +11,11 @@ class ChatRequest(BaseModel):
     messages: list[dict]
 
 @app.post("/chat")
-async def request_chat (user_request : ChatRequest):
-    input = user_request.messages
-    response = ollama_ai.chat(input)
+async def request_chat(user_request: ChatRequest) -> dict:
+    message = {"role": user_request.role, "content": user_request.content}
+    answer = ollama_ai.chat(message)
+    return {"response": answer}
 
-    return response
     
 
 if __name__ == "__main__" :
