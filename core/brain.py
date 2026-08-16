@@ -27,13 +27,14 @@ collection.upsert(
 )
 
 # Search Query
-def init_brain(message : str) -> str:
-    results = collection.query(
-        query_texts = [message],
-        n_results = 10
-        )
+def init_brain(message: str) -> str:
+    results = collection.query(query_texts=[message], n_results=5)
+    documents = results.get("documents", [[]])[0]
+    if not documents:
+        return "Keine relevanten Erinnerungen gefunden."
+    return "\n".join(documents)
 
-    return str(results)
+    return str(results_return)
 
 def remember(memory : list):
     try: 
