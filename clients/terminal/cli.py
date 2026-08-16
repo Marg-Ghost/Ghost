@@ -4,15 +4,21 @@ import sys
 CORE_URL = "http://0.0.0.0:4000/chat" 
 
 def main() -> int:
-    frame = "||"+"=" * 25
-    wellcome = "||Start Service 001 -> Ghost"
-    exit = "||Exit the Programm with 'exit'/'stop'/'kill'"
+    frame_h = "||"
+    frame = frame_h +"=" * (25+18) + frame_h
+    wellcome = frame_h + "Start Service 001 -> Ghost                 " + frame_h
+    exit = frame_h + "Exit the Programm with 'exit'/'stop'/'kill'" + frame_h
     print(frame+"\n"+wellcome+"\n"+exit+"\n"+frame+"\n")
 
+    message_number = 0
     while True:
         sign_pers = "|| User |:  "
-        sign = "|| ^_^ |:  "
-        message = input (sign_pers)
+        sign = "|| ^_^  |:  "
+        frame_chat = "-" * 20
+        
+        print(frame_h, message_number, "|" ,frame_chat)
+        message_number += 1
+        message = input(sign_pers)
 
         if message == "exit" or message == "stop" or message == "kill":
             print(sign + "Goodbye!")
@@ -31,7 +37,7 @@ def main() -> int:
             continue
 
         data = response.json()
-        assistant_message = data["message"]["content"]   # Struktur kommt von Ollamas Response
+        assistant_message = data["response"]
 
         print(f"{sign}{assistant_message}\n")
         #conversation_history.append({"role": "assistant", "content": assistant_message})

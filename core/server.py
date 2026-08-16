@@ -8,7 +8,9 @@ app = FastAPI()
 
 
 class ChatRequest(BaseModel):
-    messages: list[dict]
+    role: str = "user"
+    content: str
+
 
 @app.post("/chat")
 async def request_chat(user_request: ChatRequest) -> dict:
