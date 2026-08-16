@@ -1,37 +1,63 @@
 import ollama
 import os
 
+#my
+import brain
+
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 client = ollama.Client(host=OLLAMA_HOST)
 current_model = "llama3.2:3b"
 
-max_memory = 10
+max_memory = 15
 short_memory = []
 
-def chat (input : dict) -> str:
-    clear_m = handle_memory(input)
-    if clear_m == 1:
+def chat (input_message : dict, background_task = None) -> str:
+    type_interaction = mode(input_message["content"])
+    handle_memory(input_message, background_task)
+
+    if type_interaction == 1:
        return {'response': 'the short term memory has been cleared'}
+
+    brain_intel = ""
+    if type_interaction == 0:
+        brain_intel = brain.init_brain(input_message["content"])
+
+    pass_message = short_memory + {"role": "system", "content":"Long Term Memory: "+ str(brain_intel)}
     response = client.chat(
                 model = current_model,
-                messages = short_memory,
+                messages = pass_message,
                 keep_alive = -1
             )
     
-    content = response["message"]["content"]
-    short_memory.append({"role": "assistant", "content": content})
-    #a_message = {"role": "assistant", "content": response["message"]["content"]}
-    
+    content = response["message"]["content"]    
     return content
 
-# First in First out
-def handle_memory(input : str) -> int:
+def mode(input_message : str) -> int:
     global short_memory
-    if input == "clear":
-        short_memory = []
-        return 1
+    if input_message == "clear":
+            short_memory = []
+            return 1
+    if input_message == "simple":
+            short_memory = []
+            return 2 
 
-    short_memory.append(input)
-    if len(short_memory) > max_memory:
-        short_memory.pop(0)
     return 0
+
+# First in First out
+already_inside = 0
+def handle_memory(input_message : dict, background_task = None):
+    global short_memory
+    global already_inside
+
+    short_memory.append(input_message)
+
+    if len(short_memory) > max_memory:
+        if already_inside == 0:
+            if background_task:
+                background_task.add_task(brain.remember, short_memory.copy())
+            else:
+                brain.remember(short_memory)
+            
+            already_inside = max_memory 
+        already_inside -= 1
+        short_memory.pop(0)
