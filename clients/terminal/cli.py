@@ -6,7 +6,7 @@ CORE_URL = "http://0.0.0.0:4000/chat"
 def main() -> int:
     frame_h = "||"
     frame = frame_h +"=" * (25+18) + frame_h
-    wellcome = frame_h + "Start Service 001 -> Ghost                 " + frame_h
+    wellcome = frame_h + "Start Service 010 -> Ghost                 " + frame_h
     exit = frame_h + "Exit the Programm with 'exit'/'stop'/'kill'" + frame_h
     print(frame+"\n"+wellcome+"\n"+exit+"\n"+frame+"\n")
 
