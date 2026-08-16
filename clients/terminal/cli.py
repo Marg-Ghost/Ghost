@@ -31,14 +31,14 @@ def main() -> int:
                 timeout=60
             )
             response.raise_for_status()
-
+            #print(response)
         except requests.exceptions.RequestException as e:
             print(f"[Fehler] Konnte den Core nicht erreichen: {e}")
             continue
-
+	
         data = response.json()
         assistant_message = data["response"]
-
+        #print(data)
         print(f"{sign}{assistant_message}\n")
         #conversation_history.append({"role": "assistant", "content": assistant_message})
     

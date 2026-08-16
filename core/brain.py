@@ -6,7 +6,7 @@ import os
 import json
 
 #my
-import core.data.load_data as load_data
+import data.load_data as load_data
 
 db = chromadb.PersistentClient(path="./chroma_data")
 collection = db.get_or_create_collection(name="Ghost")
@@ -18,6 +18,9 @@ current_model = "llama3.2:3b"
 
 # Datenbanken
 documents, ids = load_data.load_txt()
+if documents:
+    collection.upsert(documents=documents, ids=ids)
+
 collection.upsert(
     documents = documents,
     ids = ids

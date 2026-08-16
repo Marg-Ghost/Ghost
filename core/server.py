@@ -19,7 +19,9 @@ class ManualEntryRequest(BaseModel):
 @app.post("/chat")
 async def request_chat(user_request: ChatRequest, background_task : BackgroundTasks) -> dict:
     message = {"role": user_request.role, "content": user_request.content}
+    print("server: ", message)
     answer = ollama_ai.chat(message, background_task)
+    print("answer: ", answer)
     return {"response": answer}
 
 

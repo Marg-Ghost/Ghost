@@ -1,9 +1,12 @@
 import json
+import os
+
+DATA_PATH = os.path.join(os.path.dirname(__file__), "Vector_intel.txt")
 
 def load_txt() -> tuple[list, list]:
     try:
         data = []
-        with open(f"Vector_intel.txt", "r") as f:
+        with open(DATA_PATH, "r") as f:
             data = json.load(f)
         doc , ids = data
         return doc , ids
@@ -14,5 +17,5 @@ def save_txt(doc : list, ids : list):
     data = []
     data.append(doc)
     data.append(ids)
-    with open(f"Vector_intel.txt", "w") as f:
+    with open(DATA_PATH, "w") as f:
         json.dump(data, f, indent=4)

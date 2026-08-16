@@ -22,7 +22,7 @@ def chat (input_message : dict, background_task = None) -> str:
     if type_interaction == 0:
         brain_intel = brain.init_brain(input_message["content"])
 
-    pass_message = short_memory + {"role": "system", "content":"Long Term Memory: "+ str(brain_intel)}
+    pass_message = [{"role": "system", "content":"Long Term Memory: "+ str(brain_intel)}] + short_memory
     response = client.chat(
                 model = current_model,
                 messages = pass_message,
