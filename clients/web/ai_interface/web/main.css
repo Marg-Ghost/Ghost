@@ -166,3 +166,69 @@ figure:hover{
     line-height: 1.6;
     color: #dddddd;
 }
+/* Overlay-Hintergrund, deckt den ganzen Screen ab */
+#memory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Versteckt-Zustand */
+#memory-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* Der eigentliche Inhalts-Kasten in der Mitte */
+#memory-overlay-content {
+    background-color: #1a1a1a;
+    border: 3px solid #ffffff;
+    padding: 30px 40px;
+    width: 80%;
+    max-width: 700px;
+    max-height: 70vh;
+    overflow-y: auto;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+#memory-overlay-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+#memory-display {
+    color: #dddddd;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    white-space: pre-wrap;   /* JSON/Text sauber umbrechen statt abzuschneiden */
+}
+
+/* Schließen-Button oben rechts im Kasten */
+#memory-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#memory-close:hover {
+    background-color: #ffffff33;
+}
