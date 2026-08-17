@@ -36,7 +36,7 @@ def main() -> int:
     data = response.json()
     print(f"{frame_h} Addition to DB | Erfolg : {len(data['entries'])} Einträge hinzugefügt")
     for e in data["entries"]:
-        print(f"[Fehler] : {e}")
+        print(f"{frame_h}Enty : {e}")
 
 if __name__ == "__main__":
     main()
