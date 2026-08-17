@@ -45,4 +45,4 @@ async def chat(message: payload) -> str:
 
 
 if __name__ == "__main__":
-    uvicorn(app, host="0.0.0.0",port = 4100)
+    uvicorn.run(app, host="0.0.0.0",port = 4100)
