@@ -1,8 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 import requests
 import sys
+from fastapi.staticfiles import StaticFiles
+import os
+from pathlib import Path
+from fastapi.responses import FileResponse
 
 CORE_URL = "http://0.0.0.0:4000/chat" 
 
@@ -12,7 +16,17 @@ class payload(BaseModel):
     role: str = "user"
     content: str
 
-@app.post("/")
+app.mount("/static", StaticFiles(directory="web"), name="static")
+
+@app.get("/")
+async def load_surface():
+	try:
+		file_path = Path("/app/web/index.html")
+		return FileResponse(str(file_path))
+	except Exception as e:
+		raise HTTPException(status_code=404, detail="index.html")
+
+@app.post("/chat")
 async def chat(message: payload) -> str:
     try:
         response = requests.post(
