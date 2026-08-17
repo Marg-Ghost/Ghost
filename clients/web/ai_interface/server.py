@@ -5,11 +5,20 @@ import requests
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 
-CORE_URL = "http://0.0.0.0:4000/chat"
+CORE_URL = "http://127.0.0.1:4000/chat"
 BASE_DIR = Path(__file__).resolve().parent / "web"
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class payload(BaseModel):
     role: str = "user"
