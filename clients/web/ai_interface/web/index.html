@@ -13,7 +13,7 @@
         </section>
         <main>
             <section id="memory">
-                <figure>
+                <figure onclick="load_memory('short')">
                     <img src="/static/folder.png">
                     <figcaption>short Memory</figcaption>
                 </figure>
@@ -21,6 +21,14 @@
                     <img src="/static/folder.png">
                     <figcaption>long Memory</figcaption>
                 </figure>
+            </section>
+            <div id="memory-overlay" class="hidden">
+                <div id="memory-overlay-content">
+                    <button id="memory-close" onclick="close_memory()">✕</button>
+                    <h2 id="memory-title">Memory</h2>
+                    <pre id="memory-display"></pre>
+                </div>
+            </div>
             </section>
             <section id="interaction">
                 <h1>Ghost ...</h1>
