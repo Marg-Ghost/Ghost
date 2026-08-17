@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    overflow: hidden;
+}
+
+/* --- Top Header Line & System Info --- */
+#sys {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid #ffffff;
+    padding-bottom: 8px;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+#sys h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    background-color: #4a4a4a;
+    color: #ffffff;
+    padding: 4px 16px;
+    /* Angeschrägtes Sci-Fi Tag */
+    clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+    margin-left: 15px;
+}
+
+#sys p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-right: 25px;
+}
+
+/* --- Main Dashboard Area --- */
+main {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* Left Memory Section */
+#memory {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 150px;
+}
+
+#memory figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 100px;
+}
+
+#memory img {
+    width: 70px;
+    height: auto;
+    filter: brightness(0.8) contrast(1.2);
+}
+
+#memory figcaption {
+    font-size: 0.85rem;
+    color: #cccccc;
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* Center Interaction Section */
+#interaction {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+#interaction h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#interaction p {
+    font-size: 1.1rem;
+    color: #aaaaaa;
+    margin-bottom: 40px;
+}
+
+/* Custom Cut-Corner Input Box */
+#input {
+    width: 100%;
+    height: 70px;
+    background-color: transparent;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+    outline: none;
+    resize: none;
+    /* Angeschrägte Ecke unten rechts */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    position: relative;
+}
+
+#input::placeholder {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* Untere abgesetzte Zierlinie unter dem Input */
+#interaction::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+    width: 200px;
+    height: 3px;
+    background-color: #ffffff;
+    /* Schräge Kante für die Accent-Line */
+    clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%);
+}
+figure:hover{
+    background-color: #ffffff33;
+    border-radius: 10px;
+    padding: 5px;
+}
+#answer {
+    max-width: 650px;
+    width: 100%;
+    margin: 40px auto 60px auto;
+    padding: 20px;
+    border-left: 3px solid #ffffff;
+    background-color: #222222;
+}
+
+#answer h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#answer p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #dddddd;
+}
