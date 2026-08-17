@@ -6,8 +6,9 @@ from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
-CORE_URL = "http://127.0.0.1:4000/chat"
+CORE_URL = os.getenv("CORE_URL", "http://core:4000/chat") 
 BASE_DIR = Path(__file__).resolve().parent / "web"
 
 app = FastAPI()
@@ -44,7 +45,7 @@ async def chat(message: payload) -> str:
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"[Fehler] Konnte den Core nicht erreichen: {e}")
-        return "[Error] Could not reach the core server"
+        return f"[Error] Could not reach the core server {e}"
 
     data = response.json()
     assistant_message = data["response"]

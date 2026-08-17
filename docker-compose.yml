@@ -1,0 +1,18 @@
+services:
+  core:
+    build: ./core
+    container_name: core_daemon
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # damit core weiterhin Ollama auf dem Host erreicht
+    restart: unless-stopped
+
+  web:
+    build: ./clients/web/ai_interface   # Pfad an deine web_interface-Struktur anpassen
+    container_name: ai_interface_daemon
+    ports:
+      - "4100:4100"
+    depends_on:
+      - core
+    restart: unless-stopped
