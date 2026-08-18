@@ -1,7 +1,7 @@
 import json
 import os
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "Vector_intel.txt")
+DATA_PATH = os.path.join(os.path.dirname(__file__), "Vector_intel.json")
 
 def load_txt() -> tuple[list, list]:
     try:
