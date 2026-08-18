@@ -51,6 +51,18 @@ async def chat(message: payload) -> str:
     assistant_message = data["response"]
     return assistant_message
 
+CORE_URL_BASE = "http://core:4000" 
+
+@app.post("/load_data")
+async def load_data(req: payload):
+    endpoint = "/memory/long" if req.content == "long" else "/memory/short"
+    try:
+        response = requests.get(f"{CORE_URL_BASE}{endpoint}", timeout=30)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=502, detail=f"Core nicht erreichbar: {e}")
+
+    return response.json()
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=4100)
