@@ -45,7 +45,7 @@ async def chat(message: payload) -> str:
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"[Fehler] Konnte den Core nicht erreichen: {e}")
-        return "[Error] Could not reach the core server "
+        return f"[Error] Could not reach the core server {e}"
 
     data = response.json()
     assistant_message = data["response"]
