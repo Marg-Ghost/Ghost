@@ -40,7 +40,6 @@ async def get_short_memory() -> dict:
 @app.get("/memory/long")
 async def get_long_memory() -> dict:
     return {"memory": brain.documents}
-
     
 
 if __name__ == "__main__" :

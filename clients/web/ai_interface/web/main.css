@@ -214,7 +214,6 @@ figure:hover{
     white-space: pre-wrap;   /* JSON/Text sauber umbrechen statt abzuschneiden */
 }
 
-/* Schließen-Button oben rechts im Kasten */
 #memory-close {
     position: absolute;
     top: 15px;

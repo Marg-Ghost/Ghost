@@ -6,7 +6,7 @@ import brain
 
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 client = ollama.Client(host=OLLAMA_HOST)
-current_model = "llama3.2:3b"
+current_model = "qwen2.5:1.5b"
 
 max_memory = 15
 short_memory = []

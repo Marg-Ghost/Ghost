@@ -5,7 +5,7 @@ async function load_memory(type) {
 
     title.innerText = type === "long" ? "Long Term Memory" : "Short Term Memory";
     display.innerText = "Loading...";
-    overlay.classList.remove("hidden");   // ✅ Overlay sichtbar machen
+    overlay.classList.remove("hidden"); 
 
     try {
         const response = await fetch("/load_data", {

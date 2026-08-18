@@ -6,8 +6,9 @@ from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
-CORE_URL = "http://127.0.0.1:4000/chat"
+CORE_URL = os.getenv("CORE_URL", "http://core:4000/chat") 
 BASE_DIR = Path(__file__).resolve().parent / "web"
 
 app = FastAPI()
@@ -44,12 +45,24 @@ async def chat(message: payload) -> str:
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"[Fehler] Konnte den Core nicht erreichen: {e}")
-        return "[Error] Could not reach the core server"
+        return "[Error] Could not reach the core server "
 
     data = response.json()
     assistant_message = data["response"]
     return assistant_message
 
+CORE_URL_BASE = "http://core:4000" 
+
+@app.post("/load_data")
+async def load_data(req: payload):
+    endpoint = "/memory/long" if req.content == "long" else "/memory/short"
+    try:
+        response = requests.get(f"{CORE_URL_BASE}{endpoint}", timeout=30)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=502, detail=f"Core nicht erreichbar: {e}")
+
+    return response.json()
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=4100)

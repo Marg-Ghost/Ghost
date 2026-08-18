@@ -13,7 +13,7 @@ collection = db.get_or_create_collection(name="Ghost")
 
 
 client = ollama.Client(host=os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434"))
-current_model = "llama3.2:3b"
+current_model = "qwen2.5:1.5b"
 
 
 # Datenbanken
