@@ -30,8 +30,6 @@ async def manual_entry(entry_request: ManualEntryRequest) -> dict:
     result = brain.summarize_for_storage(entry_request.content) 
     return {"entries": result}
 
-import brain
-import ollama_ai
 
 @app.get("/memory/short")
 async def get_short_memory() -> dict:
