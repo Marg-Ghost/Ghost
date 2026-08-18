@@ -4,6 +4,9 @@ import sys
 CORE_URL = "http://0.0.0.0:4000/chat" 
 
 def main() -> int:
+    color_ai = ["\033[36m", "\033[0m"]
+    color_user = ["\033[35m", "\033[0m"]
+
     frame_h = "||"
     frame = frame_h +"=" * (25+18) + frame_h
     wellcome = frame_h + "Start Service 010 -> Ghost                 " + frame_h
@@ -12,8 +15,8 @@ def main() -> int:
 
     message_number = 0
     while True:
-        sign_pers = "|| User |:  "
-        sign = "|| ^_^  |:  "
+        sign_pers = f"{color_user[0]}|| User |:  {color_user[1]}"
+        sign = f"{color_ai[0]}|| ^_^  |:  {color_ai[1]}"
         frame_chat = "-" * 20
         
         print(frame_h, message_number, "|" ,frame_chat)

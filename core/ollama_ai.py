@@ -8,7 +8,7 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 client = ollama.Client(host=OLLAMA_HOST)
 current_model = "qwen2.5:1.5b"
 
-max_memory = 15
+max_memory = 7
 short_memory = []
 
 def chat (input_message : dict, background_task = None) -> str:
