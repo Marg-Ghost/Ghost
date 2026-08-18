@@ -18,8 +18,10 @@ current_model = "qwen2.5:1.5b"
 
 # Datenbanken
 documents, ids = load_data.load_txt()
-if documents:
+if documents and collection.count() == 0:
+    print("Initialisiere ChromaDB mit Daten...")
     collection.upsert(documents=documents, ids=ids)
+    print("ChromaDB erfolgreich geladen!")
 
 collection.upsert(
     documents = documents,
