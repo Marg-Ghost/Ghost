@@ -9,7 +9,7 @@ def main() -> int:
 
     frame_h = "||"
     frame = frame_h +"=" * (25+18) + frame_h
-    wellcome = frame_h + "Start Service 010 -> Ghost                 " + frame_h
+    wellcome = frame_h + "Start Service 100 -> Ghost                 " + frame_h
     exit = frame_h + "Exit the Programm with 'exit'/'stop'/'kill'" + frame_h
     print(frame+"\n"+wellcome+"\n"+exit+"\n"+frame+"\n")
 
